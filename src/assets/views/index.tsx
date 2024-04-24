@@ -3,26 +3,31 @@ import { PiTrashBold } from "react-icons/pi";
 import './styles.css'
 
 interface Todo {
-  todo: string;
-}
-export function Todos() {
+  todo: string;}
 
-const [todos, setTodos] = useState<Todo[]>([]);
-const [form, setForm] = useState<Todo>({ todo: "" });
+  export function Todos() {
 
-const handleInputChange = (event) => {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [form, setForm] = useState<Todo>({ todo: "" });
+
+  const handleInputChange = (event) => {
   const { name, value } = event.target;
   setForm({  ... form, [name]: value});
-};
-const handleSubmit = (event) => {
+  };
+  const handleSubmit = (event) => {
   event.preventDefault();
   if (form.todo) {
     setTodos([form, ... todos]);
     setForm
   }
-}
+  }
 
-return (
+  const handleRemoveTodo = (index) => {
+  const newTodos = todos.filter((_,idx) => idx !== index);
+  setTodos(newTodos);
+  }
+
+  return (
   <div>
     <h1>Todos de Prog  Web</h1>
     <form onSubmit={handleSubmit}className="form-todo">
@@ -35,14 +40,20 @@ return (
       <button type="submit"> Adicionar Tarefa </button>
     </form>
     <div className="todo-list">
-      {todos.map((tarefa, index) => (
-        <div key={index} className="todo-item">
-        <span>{tarefa.todo}</span>
-        <button>
-          <PiTrashBold />
-        </button>
+      {todos.length > 0 ? (
+        todos ? todos.map((tarefa, index) => (
+          <div key={index} className="todo-item">
+            <span>{tarefa.todo}</span>
+            <button onClick={()=>handleRemoveTodo(index)}>
+              <PiTrashBold />
+            </button>
+          </div>
+        )) 
+      )} : ( 
+        <div>
+          <span>Não existem tarefas para serem excluidas</span>
         </div>
-      ))}
+      )
     </div>
   </div>
   );
