@@ -1,10 +1,10 @@
 export function Todos() {
   const tarefas = [
     {todo: "acordar" },
-    {todo: "acordar" },
-    {todo: "acordar" },
-    {todo: "acordar" },
-    {todo: "acordar" },
+    {todo: "tomar café" },
+    {todo: "ir para a academia" },
+    {todo: "colocar o lixo para fora" },
+    {todo: "fazer o almoço" },
   ];
 
   return (
@@ -12,13 +12,12 @@ export function Todos() {
     <h1>Todos de Prog  Web</h1>
     <form>
       <input type="text"/>
-      <button type ="submit"> Adicionar
+      <button type="submit"> Adicionar Tarefa </button>
     </form>
     <ul>
-      <li>Tarefas 1</li>
-      <li>Tarefas 2</li>
-      <li>Tarefas 3</li>
-      <li>Tarefas 4</li>
+      {tarefas.map((tarefa, index) => (
+        <li key={index}>{tarefa.todo}</li>
+      ))}
     </ul>
   </div>
   );
