@@ -1,20 +1,14 @@
 import { useState } from "react";
+import { PiTrashBold } from "react-icons/pi";
+import './styles.css'
 
 interface Todo {
   todo: string;
 }
 export function Todos() {
-  const tarefas = [
-    {todo: "acordar" },
-    {todo: "tomar café" },
-    {todo: "ir para a academia" },
-    {todo: "colocar o lixo para fora" },
-    {todo: "fazer o almoço" },
-  ];
 
 const [todos, setTodos] = useState<Todo[]>([]);
 const [form, setForm] = useState<Todo>({ todo: "" });
-console.log("🚀 ~ Todos `form:", form.todo);
 
 const handleInputChange = (event) => {
   const { name, value } = event.target;
@@ -31,7 +25,7 @@ const handleSubmit = (event) => {
 return (
   <div>
     <h1>Todos de Prog  Web</h1>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}className="form-todo">
       <input type="text" 
       name="todo" 
       value={form.todo}
@@ -40,11 +34,16 @@ return (
       />
       <button type="submit"> Adicionar Tarefa </button>
     </form>
-    <ul>
+    <div className="todo-list">
       {todos.map((tarefa, index) => (
-        <li key={index}>{tarefa.todo}</li>
+        <div key={index} className="todo-item">
+        <span>{tarefa.todo}</span>
+        <button>
+          <PiTrashBold />
+        </button>
+        </div>
       ))}
-    </ul>
+    </div>
   </div>
   );
 }
