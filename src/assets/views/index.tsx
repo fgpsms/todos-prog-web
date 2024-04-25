@@ -41,19 +41,19 @@ interface Todo {
     </form>
     <div className="todo-list">
       {todos.length > 0 ? (
-        todos ? todos.map((tarefa, index) => (
+        todos.map((tarefa, index) => (
           <div key={index} className="todo-item">
             <span>{tarefa.todo}</span>
-            <button onClick={()=>handleRemoveTodo(index)}>
-              <PiTrashBold />
+            <button onClick={() => handleRemoveTodo(index) }>
+            <PiTrashBold />
             </button>
-          </div>
-        )) 
-      )} : ( 
+          </div>  
+        ))
+      ) : (
         <div>
           <span>Não existem tarefas para serem excluidas</span>
         </div>
-      )
+      )}  
     </div>
   </div>
   );
