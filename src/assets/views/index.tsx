@@ -10,11 +10,11 @@ interface Todo {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [form, setForm] = useState<Todo>({ todo: "" });
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
   const { name, value } = event.target;
   setForm({  ... form, [name]: value});
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = (event:any) => {
   event.preventDefault();
   if (form.todo) {
     setTodos([form, ... todos]);
@@ -22,7 +22,7 @@ interface Todo {
   }
   }
 
-  const handleRemoveTodo = (index) => {
+  const handleRemoveTodo = (index: number) => {
   const newTodos = todos.filter((_,idx) => idx !== index);
   setTodos(newTodos);
   }
